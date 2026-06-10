@@ -5502,6 +5502,32 @@ class DatabaseEngine {
     });
   }
 
+  // Navigation Registry CRUD
+  public navigation_registry = {
+    getAll: (): NavigationRegistryItem[] => [...this.state.navigation_registry],
+    create: (data: Omit<NavigationRegistryItem, 'id' | 'created_at'>): NavigationRegistryItem => {
+      const item: NavigationRegistryItem = {
+        ...data,
+        id: `nav_${Math.random().toString(36).substring(2, 9)}`,
+        created_at: new Date().toISOString()
+      };
+      this.state.navigation_registry.push(item);
+      this.saveToStorage();
+      this.notify('all');
+      return item;
+    },
+    update: (id: string, updates: Partial<NavigationRegistryItem>): void => {
+      this.state.navigation_registry = this.state.navigation_registry.map(x => x.id === id ? { ...x, ...updates } : x);
+      this.saveToStorage();
+      this.notify('all');
+    },
+    delete: (id: string): void => {
+      this.state.navigation_registry = this.state.navigation_registry.filter(x => x.id !== id);
+      this.saveToStorage();
+      this.notify('all');
+    }
+  };
+
   // 1. USERS COLLECTION CRUD
   public users = {
     getAll: (): UserProfile[] => [...this.state.users],
