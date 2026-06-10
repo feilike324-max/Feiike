@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Outfit", var(--font-sans);
+
+  /* Medusa UI Premium Design System Presets */
+  --color-medusa-bg-base: #ffffff;
+  --color-medusa-bg-subtle: #f9fafb;
+  --color-medusa-bg-component: #f3f4f6;
+  --color-medusa-border-base: #e5e7eb;
+  --color-medusa-border-strong: #d1d5db;
+  --color-medusa-fg-base: #111827;
+  --color-medusa-fg-subtle: #4b5563;
+  --color-medusa-fg-muted: #9ca3af;
+
+  /* App Brand Compliance Palette (#07C2E3) */
+  --color-brand-base: #07C2E3;
+  --color-brand-hover: #06B2D0;
+  --color-brand-active: #059BBC;
+}
+
+@layer base {
+  body {
+    background-color: #f9fafb;
+    color: #111827;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Micro-animations and high-contrast refinements */
+.medusa-table-row {
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.medusa-table-row:hover {
+  background-color: #f9fafb;
+}
+
+.medusa-card-elevation {
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+.animate-fadeIn {
+  animation: fadeIn 350ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
